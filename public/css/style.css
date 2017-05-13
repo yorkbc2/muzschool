@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.center-block {
+  width: 330px;
+  min-height: 10px;
+  padding: 10px;
+  border: 1px solid #e7e7e7;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #000;
+  margin: 5% auto;
+}
+.error-message {
+  width: 100%;
+  padding: 4px;
+  font-size: 1em;
+  font-family: "Roboto", sans-serif;
+  color: #f00;
+  border: 1px solid #f00;
+  border-radius: 10px;
+  background-color: rgba(255,0,0,0.2);
+}
+.dx-form {
+  width: 100%;
+  padding: 10px;
+}
+.dx-form small {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8em;
+  color: rgba(0,0,0,0.45);
+  font-family: Helvetica, sans-serif;
+}
+.dx-form input {
+  width: 100%;
+  padding: 2px 4px;
+  margin: 4px 0;
+  font-size: 1.1em;
+  color: rgba(0,0,0,0.45);
+  outline-color: #00e64d;
+}
+.dx-form input:focus {
+  color: #000;
+}
+.ms-notice {
+  width: 300px;
+  position: absolute;
+  padding: 15px;
+  bottom: 0;
+  right: 0;
+  border: 1px solid #e7e7e7;
+  border-left: 3px solid #f00;
+  margin: 0;
+}
+.ms-notice .ms-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  background-color: transparent;
+  color: rgba(0,0,0,0.35);
+  outline: none;
+  font-size: 1.2em;
+}
+.ms-notice .ms-close:hover {
+  color: #000;
+}
+.ms-notice h3 {
+  text-transform: uppercase;
+  color: #f00;
+  margin: 4px 0;
+  padding: 0;
+}
+.ms-notice p {
+  color: #000;
+  font-size: 1em;
+}

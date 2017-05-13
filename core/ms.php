@@ -4,6 +4,13 @@
 
 	class MS extends MS_Connector {
 
+		public function set_basepath($path) {
+			$this->ms_basepath = $path;
+		}
+		public function get_basepath () {
+			echo $this->ms_basepath;
+		}
+
 		public function add_admin($login, $password, $name) {
 
 			$password = $this->generate($password);
@@ -15,6 +22,21 @@
 			$result = $this->query("INSERT INTO `adminlist` (id, login, password, name) VALUES (NULL, '$login', '$password', '$name')");
 
 			return $result;
+
+		}
+
+		public function admin_check() {
+
+			$s = $_SESSION;
+			$u = isset($_SESSION['user']);
+			$a = isset($_SESSION['user']['is_admin']);
+
+			if($s AND $u AND $a) {
+				return true;
+			}
+			else {
+				return false;
+			}
 
 		}
 
@@ -56,17 +78,22 @@
 
 		}
 
+		public function admin_name() {
+			echo $_SESSION['user']['name'];
+		}
+
 	}
 
 	$ms = new MS();
 
 	$ms->connect();
 
+	$ms->set_basepath("/muzschool");
+
 	require "ms.router.php";
 
 	$router = new MS_Router("/muzschool");
 
-	$router->create();
 
 
 

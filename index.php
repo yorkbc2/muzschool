@@ -20,17 +20,30 @@
 
 	<link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="public/bower_components/jquery-ui/themes/base/jquery-ui.min.css">
 
 	<link rel="stylesheet" href="public/css/style.css">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+	<script src='public/bower_components/vue/dist/vue.min.js'></script>
+
+	<script src='public/bower_components/vue-resource/dist/vue-resource.min.js'></script>
 </head>
 <body>
 
-	<h2><?php $ms->get_description(); ?></h2>
+	<script src="public/MS.js"></script>
+	<script src="public/bower_components/jquery-ui/jquery-ui.min.js"></script>
+ 
+	<section id="main">
+		<?php $router->create(); ?>
+	</section>
 	
 
 	<?php $ms->close(); ?>
 
-	<script src='public/bower_components/vue/dist/vue.min.js'></script>
-	<script src='public/bower_components/vue-resource/dist/vue-resource.min.js'></script>
+
+	
 </body>
 </html>

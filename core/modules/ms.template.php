@@ -4,6 +4,9 @@
 
 	class MS_Template extends MS_Reader{
 
+		public $main_color = "#00e64d";
+		public $main_font = "'Roboto', sans-serif";
+
 		public $web_info = array();
 
 		function __construct() {

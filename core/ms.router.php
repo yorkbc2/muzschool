@@ -7,12 +7,19 @@
 		public $routes = array();
 
 		public $user_view = __DIR__."/views/user/";
+		public $req_view = __DIR__."/views/req/";
+
+		public $basepath = "";
+
+		
 
 		function __construct($basepath = "") {
 
 			$this->router = new AltoRouter();
 
 			$this->router->setBasePath($basepath);
+
+			$this->basepath = $basepath;
 
 			$this->connect();
 
@@ -21,6 +28,13 @@
 		function __destruct() {
 
 			$this->close();
+
+		}
+
+		public function redirect($path) {
+
+			header("Location: ".$this->basepath.$path);
+			exit;
 
 		}
 
@@ -70,17 +84,68 @@
 
 			}
 
+			$this->create_req_maps();
+
 			$this->match();
 
 		}
 
-		public function map($route) {
+		private function create_req_maps() {
+
+			$r = $this->router;
+
+			$r->map("GET", "/login", function () {
+
+				global $ms;
+
+				$check = $ms->admin_check();
+
+				if($check) {
+
+					$this->redirect('/admin-panel');
+
+				}
+				else {
+
+					require $this->req_view."login.php";
+
+				}
+
+			});
+
+			$r->map("GET", "/admin-panel", function () {
+
+				global $ms;
+
+				if($ms->admin_check()) {
+
+					require $this->req_view."admin-panel.php";
+
+				}
+				else {
+					$this->redirect('/login');
+				}
+
+			});
+
+			$r->map("GET", "/logout", function () {
+
+				$_SESSION['user'] = array();
+
+				$this->redirect('/');
+
+			});
+
+			
+
+		}
+
+		private function map($route) {
 
 
 				$this->middle_route = $route;
 
 			$this->router->map("GET", "/".$route['url'], function () {
-
 
 				require $this->user_view.$this->middle_route['page'].'.php';
 
@@ -88,7 +153,7 @@
 
 		}
 
-		public function match() {
+		private function match() {
 
 			$match = $this->router->match();
 
