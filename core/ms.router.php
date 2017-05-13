@@ -94,6 +94,14 @@
 
 			$r = $this->router;
 
+			$r->map("GET", "/", function () {
+
+				global $ms;
+
+				require $this->req_view."index.html";
+
+			});
+
 			$r->map("GET", "/login", function () {
 
 				global $ms;
@@ -136,6 +144,11 @@
 
 			});
 
+			$r->map("GET", '/404', function () {
+				global $ms;
+				require $this->req_view."404.php";
+			});
+
 			
 
 		}
@@ -164,7 +177,7 @@
 			}
 			else {
 
-				header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+				$this->redirect('/404');
 
 			}
 

@@ -9,7 +9,7 @@
 		Панель Адміністратора.
 	</h2>
 	<hr>
-	<div id="tabs">
+	<div id="main-tabs">
 		<div class="container-fluit">
 			<div class="row">
 				<div class='col-md-4 admin-nav'>
@@ -23,7 +23,7 @@
 						<?php require "admin_comps/welcome.php" ?>
 					</div>
 					<div id="page">
-						Додати сторінку
+						<?php require "admin_comps/add_page.php" ?>
 					</div>
 				</div>
 			</div>
@@ -35,7 +35,7 @@
 </div>
 
 <script>
-	$("#tabs").tabs()
+	$("#main-tabs").tabs()
 </script>
 
 <style>
@@ -65,18 +65,18 @@
 		font-size: 1.2em;
 	}
 
-	#tabs {
+	#main-tabs {
 		width: 100%;
 		padding: 0;
 		margin: 0;
 	}
 
-	#tabs ul {
+	#main-tabs ul {
 		margin: 0;
 		padding: 0;
 		width: 100%;
 	}
-	#tabs .admin-nav ul li.ui-state-default {
+	#main-tabs .admin-nav ul li.ui-state-default {
 		display: block;
 		width: 100%;
 		background-color: #36cf70;
@@ -88,12 +88,12 @@
 		font-family: "Roboto", sans-serif;
 	}
 
-	#tabs .admin-nav ul li a {
+	#main-tabs .admin-nav ul li a {
 		color: #fff;
 		outline: none;
 	}
 
-	#tabs .admin-nav ul li.ui-state-active {
+	#main-tabs .admin-nav ul li.ui-state-active {
 		background: linear-gradient(#36cf70, green);
 	}
 

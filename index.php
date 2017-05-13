@@ -35,13 +35,19 @@
 
 	<script src="public/MS.js"></script>
 	<script src="public/bower_components/jquery-ui/jquery-ui.min.js"></script>
+	<script src="public/ckeditor/ckeditor.js"></script>
  
 	<section id="main">
 		<?php $router->create(); ?>
 	</section>
+
+	
+	
 	
 
 	<?php $ms->close(); ?>
+
+
 
 
 	
