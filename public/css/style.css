@@ -52,6 +52,13 @@ body {
   border: 1px solid #e7e7e7;
   border-left: 3px solid #f00;
   margin: 0;
+  background-color: #fff;
+}
+.ms-notice .ms-success {
+  border-left: 3px solid #008000;
+}
+.ms-notice .ms-success h3 {
+  color: #008000;
 }
 .ms-notice .ms-close {
   position: absolute;
@@ -75,4 +82,29 @@ body {
 .ms-notice p {
   color: #000;
   font-size: 1em;
+}
+.loading_block {
+  position: fixed;
+  top: 30%;
+  left: calc(50% - 240px);
+  width: 450px;
+  min-height: 1px;
+  padding: 15px;
+  border: 1px solid #e7e7e7;
+  background-color: #fff;
+  z-index: 1000;
+}
+.loading_block._success {
+  border-color: #008000;
+}
+.loading_block._success i {
+  color: #008000;
+}
+.loading_block i {
+  font-size: 4em;
+  color: #000;
+}
+.loading_block span {
+  font-size: 1.6em;
+  line-height: 15px;
 }

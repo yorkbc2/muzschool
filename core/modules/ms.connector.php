@@ -32,7 +32,7 @@
 
 			if(!$result) {
 
-				die("Неможливе виконання заклилку.");
+				die("Неможливе виконання заклилку.".mysqli_error($this->connect));
 
 			}
 
@@ -55,6 +55,15 @@
 			}
 
 			return $array;	
+
+		}
+
+		public function query_fetch($query) {
+
+			$res = $this->query($query);
+			$res = $this->fetch($res);
+
+			return $res;
 
 		}
 

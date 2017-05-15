@@ -73,6 +73,14 @@ body
 	border-left 3px solid red
 	
 	margin 0 
+
+	background-color #fff
+
+	.ms-success
+		border-left 3px solid green
+
+		h3 
+			color green
 	
 	.ms-close
 		
@@ -99,3 +107,34 @@ body
 	p
 		color #000
 		font-size 1em
+
+
+.loading_block
+
+	position fixed
+
+	top 30%
+	left calc(50% - 240px)
+	width 450px
+	min-height 1px
+
+	padding 15px
+
+	border 1px solid #e7e7e7
+	background-color white
+	z-index 1000
+
+	&._success
+		border-color green
+
+		i
+			color green
+
+	i
+		font-size 4em
+		color #000
+
+	span 
+		font-size 1.6em
+		line-height 15px
+

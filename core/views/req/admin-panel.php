@@ -15,7 +15,8 @@
 				<div class='col-md-4 admin-nav'>
 					<ul>
 						<li><a href="#welcome">Вступ</a></li>
-						<li><a href="#page">Додати сторінку</a></li>
+						<li><a href="#page">Керування сторінками</a></li>
+						<li><a href="#web-info">Керування інформацією</a></li>
 					</ul>
 				</div>
 				<div class='col-md-8 admin-content'>
@@ -24,6 +25,9 @@
 					</div>
 					<div id="page">
 						<?php require "admin_comps/add_page.php" ?>
+					</div>
+					<div id="web-info">
+						<?php require "admin_comps/web_info.php" ?>
 					</div>
 				</div>
 			</div>
@@ -34,8 +38,12 @@
 
 </div>
 
+
+<!-- Main Admin-Panel Script -->
 <script>
-	$("#main-tabs").tabs()
+	$(function () {
+		$("#main-tabs").tabs()
+	})
 </script>
 
 <style>
@@ -104,5 +112,56 @@
 
 	.admin-content ul li a{
 		color: royalblue;
+	}
+
+	.dx-modal {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0,0,0,0.4);
+
+		overflow-x: hidden;
+		z-index: 134;
+	}
+
+	.dx-modal .dx-block {
+		position: relative;
+		margin: 5% auto;
+		width: 720px;
+		overflow: auto;
+		padding: 25px;
+
+		background-color: #fff;
+
+		min-height: 200px;
+
+		border: 1px solid #e7e7e7;
+		border-radius: 5px;
+		z-index: 137;
+		text-align: left;
+	}
+	.dx-modal .dx-block input[type='radio'] {
+		width: 12px;
+		height: 12px;
+	}
+
+	.dx-modal .dx-close,
+	.dx-modal .dx-block .dx-close {
+		position: absolute;
+		top: 24px;
+		right: 24px;
+		color : #000;
+
+		font-size: 3em;
+		border: 0;
+		background-color: transparent;
+
+		outline: none;
+	}
+	.dx-modal .dx-block .dx-close {
+		top: 0;
+		right: 0;
 	}
 </style>

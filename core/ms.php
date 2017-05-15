@@ -4,6 +4,8 @@
 
 	class MS extends MS_Connector {
 
+		public $ms_basepath = "";
+
 		public function set_basepath($path) {
 			$this->ms_basepath = $path;
 		}
@@ -90,9 +92,6 @@
 
 	$ms->set_basepath("/muzschool");
 
-	require "ms.router.php";
-
-	$router = new MS_Router("/muzschool");
 
 
 

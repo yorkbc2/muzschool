@@ -2,6 +2,8 @@
 
 	require "includes/AltoRouter.php";
 
+	require "ms.php";
+
 	class MS_Router extends MS {
 
 		public $routes = array();
@@ -38,28 +40,22 @@
 
 		}
 
-		public function add_route($route_name, $route_page) {
+		public function add_route($name, $link) {
 
-			$new_router = array(
-				"link" => $route_name,
-				"page" => $route_page
-			);
-
-			$able = $this->query("SELECT * FROM `routelist` WHERE page='$route_page'");
-
+			$able = $this->query("SELECT * FROM `routelist`");
 			$able = $this->fetch($able);
 
-			if($route_page['page'] == $able['page']) {
+			$likethis = $this->query("SELECT * FROM `routelist` WHERE url='$link'");
 
-				echo "Таке посилання вже зайняте.";
+			$likethis = mysqli_fetch_array($likethis);
 
+			if($likethis['url'] AND $likethis['page']) {
+				return false;
 			}
 			else {
-				$result = $this->query("INSERT INTO `routelist` (id, url, page) VALUES (NULL, '$route_name', '$route_page')");
+				$new_route = $this->query("INSERT INTO `routelist` (id, url, page) VALUES (NULL, '$link', '$link')");
 
-				array_push($this->routes, $new_router);
-
-				return $result;
+				return true;
 			}
 
 		}
@@ -160,7 +156,7 @@
 
 			$this->router->map("GET", "/".$route['url'], function () {
 
-				require $this->user_view.$this->middle_route['page'].'.php';
+				require $this->user_view.$this->middle_route['page'].'.html';
 
 			});
 
@@ -184,5 +180,8 @@
 		}
 
 	}
+
+	$router = new MS_Router("/muzschool");
+
 	
 ?>

@@ -15,9 +15,9 @@
 	//-------------
 
 
-	$res = $ms->login_in($l, $p);
+	$sec = $ms->login_in($l, $p);
 
-	echo $res;
+	echo $sec;
 
 
 	#---------------

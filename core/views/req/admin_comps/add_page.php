@@ -1,3 +1,5 @@
+
+
 <div id="add_page">
 	<div id="page_tabs">
 		<ul class="page__tabs">
@@ -52,9 +54,14 @@
 			<hr>
 			<button class="btn btn-primary" @click="openModal">Створити сторінку</button>
 			<div class="dx-modal" v-if="creatingPage">
-				<button class="dx-close" @click="openModal">X</button>
+				<button class="dx-close" @click="openModal">&times;</button>
 				<div class="dx-block">
 					<form class='dx-form' v-on:submit.prevent="createPage">
+					<h3>
+						Створити нову сторінку
+					</h3>
+					<hr>
+						<button class="dx-close" @click="openModal">&times;</button>
 						<div>
 							<input type="text" v-model="page.name" required placeholder="Назва сторінки">
 							<small> Її будуть бачити всі користувачі сайту у навігаторі.</small>
@@ -64,16 +71,16 @@
 							<small>Посилання по якому буде знаходитись сторінка (/about)</small>
 						</div>
 						<div>
-							<textarea name="add_page_content" id="add_page_content">
-								Текст Вашої сторінки тут.
-							</textarea>
+							<textarea name="page_x2j1" id="page_x2j1" placeholder="Контент вашої сторінки"></textarea>
+							<script>
+								$("#page_x2j1").froalaEditor()
+							</script>
 						</div>
 						<div>
-							
-						</div>
-						<div>
-							<input type="radio" name='isCategory' v-model="page.isCategory" value="false" @change="changeIsCategory">
-							<input type="radio" name='isCategory' v-model="page.isCategory" value="true" @change="changeIsCategory">
+							<label for="isCategoryFalse">Без категорії</label>
+							<input type="radio" id="isCategoryFalse" name='isCategory' v-model="page.isCategory" value="false" @change="changeIsCategory" checked>
+							<label for="isCategoryTrue">Оберіть категорію</label>
+							<input type="radio" id="isCategoryTrue" name='isCategory' v-model="page.isCategory" value="true" @change="changeIsCategory">
 						</div>
 						<div>
 							<select id="add_page_select" v-model="page.category">
@@ -82,14 +89,49 @@
 								</option>
 							</select>
 						</div>
+						<div>
+							<button type='submit' class='btn btn-primary'>Створити</button>
+						</div>
 					</form>
 				</div>
 			</div>
+				
+			<hr>
+				<h2>Маніпуляція сторінками</h2>
+			<hr>
+				<p>
+					В цьому розділі Ви можете контролювати сторінки : змінювати дані сторінок, видаляти їх та просто передивитись інформацію про них.
+				</p>
+				<table class="category__table">
+					<thead>
+						<tr>
+							<th>Заголовок сторінки</th>
+							<th>Посилання на сторінку</th>
+							<th>Категорія сторінки</th>
+						</tr>
+					</thead>
+					<tbody>
+							<tr v-if="pages.length < 1">
+								<td></td><td><button @click="getPages" class='btn btn-success'>Отримати список сторінок</button></td><td></td>
+							</tr>
+							<tr v-else v-for="page in pages">
+								<td>{{page.name}} <a v-bind:href="basepath + 'edit/page/' + page.id">Редагувати</a> 
+									<button class='__remove' @click="removePage($event, page.id, page.link)">
+										&times;
+									</button>
+								</td>
+								<td>{{page.link}}</td>
+								<td v-if="page.category">{{page.category}}</td>
+								<td v-else>Без категорії</td>
+							</tr>
+					</tbody>
+				</table>
 		</div>
 	</div>
 </div>
 
-<script src="core/views/req/admin_comps/config/ckeditor.js"></script>
+
+	
 
 <script>
 
@@ -105,6 +147,12 @@
 
 			categories: [],
 
+			pages: [],
+
+			noPages: false,
+
+			basepath: new String(<?php $ms->get_basepath(); ?>/),
+
 			category: {
 				name: "",
 				link: ""
@@ -116,11 +164,38 @@
 				content: "",
 				isCategory: false,
 				category: ""
+			},
+
+			options: {
+				emulateJSON: true
 			}
 		}
 
 		,
 		methods: {
+
+			removePage(e, id, link) {
+				let conf = confirm("Ви дійсно бажаєте видалити сторінку?")
+				if(conf) {
+					this.$http.post(this.page_controller + "pages/remove_page.php", {
+						id: id,
+						link: link
+					}, this.options)
+						.then(
+							res => {
+							console.log(res)
+								if(res.body == true || res.body == 'true' || res.body == '1') {
+									MS.notice("Сторінку успішно видаленно.", "виконано", 'succ')
+									console.log(e);
+								}
+								else {
+									MS.notice("Щось пішло не так.", "помилка", 'error')
+								}
+							},
+							err => console.error(err)
+						)
+				}
+			},
 
 			changeIsCategory() {
 				console.log(this.page.isCategory)
@@ -137,9 +212,19 @@
 
 			},
 
-			changelog() {
+			createPage() {
+
+				MS.loading("Сторінка створюється. Зачекайте хвилинку.")
+
+				this.$http.post(this.page_controller+"pages/add_page.php", this.page, this.options)
+					.then(res => {
+						MS.removeLoading("Заклик успішно виконано!");
+						console.log(res)
+					}, err => console.error(err))
 
 			},
+
+			
 
 			addCategory() {
 
@@ -160,6 +245,20 @@
 					console.error(err)
 				})
 
+			},
+
+			getPages() {
+				this.$http.get(this.page_controller + "pages/get_pages.php")
+					.then(res => {
+						console.log(res.body)
+						this.pages = res.body;
+						if(this.pages.length < 1) {
+							this.noPages = true;
+						}
+						else {
+							this.noPages = false;
+						}
+					}, err => console.error(err))
 			}
 
 		},
