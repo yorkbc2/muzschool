@@ -1,8 +1,8 @@
 <?php
 
-	require "modules/ms.connector.php";
+	require "modules/ms.blog.php";
 
-	class MS extends MS_Connector {
+	class MS extends MS_Blog {
 
 		public $ms_basepath = "";
 
@@ -93,6 +93,7 @@
 		public function admin_name() {
 			echo $_SESSION['user']['name'];
 		}
+
 
 	}
 

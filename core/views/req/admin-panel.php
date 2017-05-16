@@ -42,6 +42,7 @@
 <!-- Main Admin-Panel Script -->
 <script>
 	$(function () {
+		$("#froalaAreaDescription").froalaEditor()
 		$("#_required_template").hide()
 		$("#main-tabs").tabs()
 	})

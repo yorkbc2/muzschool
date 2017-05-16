@@ -5,8 +5,6 @@
 
 	require "core/ms.pages.php";
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +32,8 @@
 	<link rel="stylesheet" href="<?php $ms->echo_host();?>/public/bower_components/froala-wysiwyg-editor/css/froala_editor.min.css">
 	<link rel="stylesheet" href="<?php $ms->echo_host();?>/public/bower_components/froala-wysiwyg-editor/css/froala_style.min.css">
 
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
 </head>
 <body>
 
@@ -42,28 +42,48 @@
 	<script src="<?php $ms->echo_host();?>/public/bower_components/froala-wysiwyg-editor/js/froala_editor.pkgd.min.js"></script>
 
  
-	<section id="main">
-		<div id="_required_template">
-			<header class="__header" id="__header">
-				<h1><?php $ms->title(); ?></h1>
-			</header>
-			<nav class="__nav" id="_nav">
-				<ul class="__ul">
-					<li><a href="<?php $ms->get_basepath() ?>/">Головна</a></li>
-					<?php $ms_pages->echo_pages($ms_pages->get_pages(), $ms->ms_basepath); ?>
-					<?php if($ms->admin_check()) {
-						?>
-					<li>
-						<a  href='<?php $ms->get_basepath(); ?>/admin-panel'>адмін-панель</a>
-					</li>
-						<?php
-					}
-						?>
-				</ul>
-			</nav>
-		</div>
-		<?php $router->create(); ?>
-	</section>
+	<div class="__wrapper">
+		<section id="main">
+			<div id="_required_template">
+				<div class="container-fluit">
+					<div class="row">
+						<div class="col-md-4">
+							<div class='__quotes'>
+								<q><?php $ms->quotes(); ?></q>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<header class="__header" id="__header">
+								<h1><img src="public/images/music_key.png" alt="Music School Key"><?php $ms->title(); ?></h1>
+							</header>
+						</div>
+					</div>
+				</div>
+				<nav class="__nav" id="_nav">
+					<ul class="__ul">
+						<li><a href="<?php $ms->get_basepath() ?>/">Головна</a></li>
+						<?php $ms_pages->echo_pages($ms_pages->get_pages(), $ms->ms_basepath); ?>
+						<?php if($ms->admin_check()) {
+							?>
+						<li>
+							<a  href='<?php $ms->get_basepath(); ?>/admin-panel'>адмін-панель</a>
+						</li>
+							<?php
+						}
+							?>
+					</ul>
+				</nav>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<?php $router->create(); ?>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</section>
+	</div>
 
 
 

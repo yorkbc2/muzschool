@@ -1,6 +1,15 @@
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 10px;
+  background-image: url("/muzschool/public/images/bg.jpg");
+}
+.__wrapper {
+  display: block;
+  background-color: #e6e6e6;
+}
+section#main {
+  margin: 0 5px;
+  background-color: #fff;
 }
 .center-block {
   width: 330px;
@@ -109,12 +118,21 @@ body {
   line-height: 15px;
 }
 .__header {
-  padding: 40px 200px;
+  padding: 40px 50px;
   margin: 0;
   display: block;
 }
 .__header h1 {
   text-align: right;
+  font-family: 'Lobster', cursive;
+}
+.__header h1 img {
+  width: 64px;
+  height: auto;
+  transform: scale(1.1);
+}
+.__header h1 img:hover {
+  animation: keyBounce 1s linear forwards;
 }
 nav.__nav {
   width: 100%;
@@ -144,4 +162,92 @@ nav.__nav ul li a {
   text-transform: uppercase;
   text-decoration: none;
   font-family: "Helvetica", sans-serif;
+}
+.__quotes {
+  position: relative;
+  display: block;
+  margin: 50px 10px 0 10px;
+  padding: 20px;
+  background-color: #f3f3f3;
+}
+.__quotes q {
+  font-size: 1.2em;
+  font-style: italic;
+}
+.__quotes::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 3px;
+  background-color: #26da62;
+  left: 0;
+  bottom: 0;
+}
+@-moz-keyframes keyBounce {
+  0% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  25% {
+    transform: rotate(15deg) scale(1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-15deg) scale(1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
+}
+@-webkit-keyframes keyBounce {
+  0% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  25% {
+    transform: rotate(15deg) scale(1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-15deg) scale(1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
+}
+@-o-keyframes keyBounce {
+  0% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  25% {
+    transform: rotate(15deg) scale(1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-15deg) scale(1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
+}
+@keyframes keyBounce {
+  0% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  25% {
+    transform: rotate(15deg) scale(1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1.1);
+  }
+  75% {
+    transform: rotate(-15deg) scale(1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.1);
+  }
 }

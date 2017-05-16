@@ -40,6 +40,16 @@
 
 		}
 
+		public function query_one($query) {
+
+			$res = $this->query($query);
+
+			$res = mysqli_fetch_array($res);
+
+			return $res;
+
+		}
+
 		public function fetch($result) {
 
 			$array = array();

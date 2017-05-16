@@ -80,6 +80,34 @@
 
 		}
 
+		public function set_quotes($new_quote) {
+
+			$this->edit_json('content', 'quotes', $new_quote, $this->path_info);
+
+		}
+
+		public function get_quotes() {
+			return $this->web_info['content']['quotes'];
+		}
+
+		public function quotes() {
+			echo $this->web_info['content']['quotes'];
+		}
+
+		public function set_fullDescription($newDescription) {
+
+			$this->edit_json('content', 'fullDescription', $newDescription, $this->path_info);
+
+		}
+
+		public function get_fullDescription() {
+			return $this->web_info['content']['fullDescription'];
+		}
+
+		public function fullDescription() {
+			echo $this->web_info['content']['fullDescription'];
+		}
+
 	}
 
 ?>

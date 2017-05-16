@@ -2,9 +2,29 @@ $main = #26da62
 
 $main_hover = #2c9e52
 
+$w_grey = #e6e6e6
+
+$lobster = 'Lobster', cursive
+
 body
+	
+
 	margin 0
-	padding 0
+	padding 0 10px
+	
+	background-image url("/muzschool/public/images/bg.jpg")
+	
+.__wrapper
+	
+	display block
+
+	background-color $w_grey
+	
+section#main
+	
+	margin 0 5px
+	
+	background-color #fff
 	
 
 .center-block
@@ -141,12 +161,24 @@ body
 		line-height 15px
 .__header
 
-	padding 40px 200px
+	padding 40px 50px
 	margin 0 
 	display block
 
 	h1
 		text-align right
+		
+		font-family $lobster
+		
+		img
+			width 64px
+			height auto
+			
+			transform scale(1.1)
+			
+			&:hover
+				
+				animation keyBounce 1s linear forwards
 
 nav.__nav
 	width 100%
@@ -183,3 +215,54 @@ nav.__nav
 				text-decoration none
 
 				font-family "Helvetica", sans-serif
+				
+
+.__quotes
+	
+	position relative
+	
+	display block
+	
+	margin 50px 10px 0 10px
+	
+	padding 20px
+	
+	background-color #f3f3f3
+	
+	q
+		font-size 1.2em
+		
+		font-style italic
+	
+	&::before
+		
+		content ""
+		
+		position absolute
+		
+
+		
+		height 100%
+		width 3px
+		background-color $main
+		
+		left 0
+		bottom 0
+
+
+@keyframes keyBounce 
+	
+	0%
+		transform rotate(0deg) scale(1.1)
+	
+	25% 
+		transform rotate(15deg) scale(1)
+	
+	50%
+		transform rotate(0deg) scale(1.1)
+	
+	75%
+		transform rotate(-15deg) scale(1)
+		
+	100%
+		transform rotate(0deg) scale(1.1)

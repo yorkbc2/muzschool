@@ -21,6 +21,24 @@
             <input type="text" v-model="websiteInfo.keywords" @input="createButton('keys')">
             <button class='btn btn-success' v-if="hiddenButtons.keys" @click="saveConfiguration('keywords')">Зберегти</button>
         </div>
+        <div>
+            <input type="text" v-model="contentInfo.quotes" @input="createButton('quotes')">
+            <button class='btn btn-success' v-if="hiddenButtons.quotes" 
+            @click="saveQuotes()">
+                Зберегти
+            </button>
+        </div>
+        <div>
+            
+            <textarea id="froalaAreaDescription" v-model="contentInfo.fullDescription"
+            @input="createButton('fullDesc')"></textarea>
+
+            <button class='btn btn-success'
+            @click="saveFullDescription()">
+                Зберегти опис сайту
+            </button>
+        </div>
+
     </fieldset>
 </div>
 
@@ -34,13 +52,17 @@
 
             websiteInfo : {},
 
+            contentInfo: {},
+
             hiddenButtons: {
                 'title' : false,
                 'desc' : false,
-                "keys" : false
+                "keys" : false,
+                "quotes" : false,
+                "fullDesc" : false
             },
 
-            bpt : new String(<?php $ms->get_basepath() ?>/)
+            bpt : new String("<?php $ms->get_basepath() ?>/")
 
         },
 
@@ -56,7 +78,12 @@
 
                 this.$http.get(this.bpt + "core/listeners/web_info.php")
                     .then(res => {
-                        this.websiteInfo = res.body
+                        console.log(res.body)
+
+                        this.websiteInfo = res.body.website
+                        this.contentInfo = res.body.content
+
+                        console.log(this.contentInfo)
                     }, err => console.error(err))
 
             },
@@ -68,6 +95,7 @@
 
                 this.$http.post(this.bpt + "core/listeners/web_info/web_change.php",
                     {
+                        req: "change_website_info",
                         method: whatSave,
                         newText: this.websiteInfo[whatSave]
                     }, {
@@ -75,6 +103,24 @@
                     }).then(res => {
                         console.log(res.body)
                     }, err => console.error(err))
+
+            },
+
+            saveFullDescription() {
+
+               this.$http.post(`${this.bpt}core/listeners/web_info/web_change.php`, {
+                    req: "change_content_fulldesc",
+                    fullDescription: $("#froalaAreaDescription").val()
+               }, {
+                emulateJSON: true
+               }).then(res => {
+                console.log(res)
+               }, err => console.error(err))
+
+            },
+            saveQuotes() {
+
+                let req = "change_content_quotes"
 
             }
 

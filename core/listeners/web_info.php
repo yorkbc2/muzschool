@@ -8,6 +8,16 @@
         "keywords" => $ms->get_keywords()
     );
 
-    echo json_encode($info, true);
+    $content = array(
+    	"quotes" => $ms->get_quotes(),
+    	"fullDescription" => $ms->get_fullDescription()
+    ); 
+
+    $full_info = array(
+        "website" => $info,
+        "content" => $content
+    );
+
+    echo json_encode($full_info, true);
 
 ?>
