@@ -71,7 +71,7 @@
 							<small>Посилання по якому буде знаходитись сторінка (/about)</small>
 						</div>
 						<div>
-							<textarea id="page_x2j1"></textarea>
+							<textarea id="page_x2j1" class="froalaArea"></textarea>
 						</div>
 						<div>
 							<label for="isCategoryFalse">Без категорії</label>
@@ -148,7 +148,7 @@
 
 			noPages: false,
 
-			basepath: new String(<?php $ms->get_basepath(); ?>/),
+			basepath: new String("<?php $ms->get_basepath(); ?>/"),
 
 			category: {
 				name: "",

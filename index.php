@@ -76,13 +76,16 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					<div class="col-md-8">
+					<div class="col-md-9">
 						<?php $router->create(); ?>
 					</div>
-					<div class="col-md-4"></div>
+					<div class="col-md-3"></div>
 				</div>
 			</div>
 		</section>
+		<footer>
+			
+		</footer>
 	</div>
 
 

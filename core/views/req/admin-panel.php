@@ -17,6 +17,7 @@
 						<li><a href="#welcome">Вступ</a></li>
 						<li><a href="#page">Керування сторінками</a></li>
 						<li><a href="#web-info">Керування інформацією</a></li>
+						<li><a href="#blog">Керування блогом</a></li>
 					</ul>
 				</div>
 				<div class='col-md-8 admin-content'>
@@ -28,6 +29,9 @@
 					</div>
 					<div id="web-info">
 						<?php require "admin_comps/web_info.php" ?>
+					</div>
+					<div id="blog">
+						<?php require "admin_comps/blog.module.php" ?>
 					</div>
 				</div>
 			</div>
@@ -42,7 +46,7 @@
 <!-- Main Admin-Panel Script -->
 <script>
 	$(function () {
-		$("#froalaAreaDescription").froalaEditor()
+		$(".froalaArea").froalaEditor()
 		$("#_required_template").hide()
 		$("#main-tabs").tabs()
 	})

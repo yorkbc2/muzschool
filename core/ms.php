@@ -1,8 +1,8 @@
 <?php
 
-	require "modules/ms.blog.php";
+	require "modules/ms.connector.php";
 
-	class MS extends MS_Blog {
+	class MS extends MS_Connector {
 
 		public $ms_basepath = "";
 

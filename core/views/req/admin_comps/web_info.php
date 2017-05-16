@@ -30,7 +30,7 @@
         </div>
         <div>
             
-            <textarea id="froalaAreaDescription" v-model="contentInfo.fullDescription"
+            <textarea id="froalaAreaDescription" class="froalaArea" v-model="contentInfo.fullDescription"
             @input="createButton('fullDesc')"></textarea>
 
             <button class='btn btn-success'

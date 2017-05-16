@@ -7,6 +7,24 @@ let MS = {
 
 	},
 
+	date() {
+
+		let d = new Date().getDate();
+		let m = parseInt(new Date().getMonth()) + 1;
+		let y = new Date().getFullYear();
+		let h = this.correctDate(new Date().getHours());
+		let ms = this.correctDate(new Date().getMinutes());
+
+	},
+
+	correctDate(d) {
+
+		let l = d < 10 ? "0" + d.toString() : d;
+
+		return l ; 
+
+	},
+
 	createShell(text, method, type) {
 		let shell = ""
 

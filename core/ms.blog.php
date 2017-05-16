@@ -1,8 +1,8 @@
 <?php 
 
-	require "ms.connector.php";
+	require "ms.pages.php";
 
-	class MS_Blog extends MS_Connector {
+	class MS_Blog extends MS_Page_Controller {
 
 		public $posts = array();
 		public $posts_l = 0;
@@ -11,10 +11,6 @@
 
 			$this->connect();
 
-		}
-
-		function __destruct() {
-			$this->close();
 		}
 
 		public function remove_post($id) {
@@ -38,13 +34,13 @@
 
 		}
 
-		public function add_post($title, $content, $category) {
+		public function add_post($title, $content, $category, $date) {
 			$query = "";
-			if($category == false || $category == "false") {
-				$query = "INSERT INTO `postlist` (id, title, content, views, categoryId) VALUES (NULL, '$title', '$content', 0, 'null')";
+			if($category == false || $category == "false" || $category == "") {
+				$query = "INSERT INTO `postlist` (id, title, content, views, categoryId, date) VALUES (NULL, '$title', '$content', 0, 'null', '$date')";
 			}
 			else {
-				$query = "INSERT INTO `postlist` (id, title, content, views, categoryId) VALUES (NULL, '$title', '$content', 0, '$category')";
+				$query = "INSERT INTO `postlist` (id, title, content, views, categoryId) VALUES (NULL, '$title', '$content', 0, '$category', '$date')";
 			}
 
 			$result = $this->query($query);
@@ -113,5 +109,7 @@
 
 
 	}
+
+	$blog = new MS_Blog();
 
 ?>

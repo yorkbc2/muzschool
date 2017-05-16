@@ -18,6 +18,6 @@
         "content" => $content
     );
 
-    echo json_encode($full_info, true);
+    echo json_encode($ms->web_info, true);
 
 ?>
