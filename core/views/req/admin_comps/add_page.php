@@ -71,10 +71,7 @@
 							<small>Посилання по якому буде знаходитись сторінка (/about)</small>
 						</div>
 						<div>
-							<textarea name="page_x2j1" id="page_x2j1" placeholder="Контент вашої сторінки"></textarea>
-							<script>
-								$("#page_x2j1").froalaEditor()
-							</script>
+							<textarea id="page_x2j1"></textarea>
 						</div>
 						<div>
 							<label for="isCategoryFalse">Без категорії</label>
@@ -134,7 +131,7 @@
 	
 
 <script>
-
+	$("#page_x2j1").froalaEditor()
 
 	let add_page = new Vue({
 		el: "#add_page",

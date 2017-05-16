@@ -42,6 +42,7 @@
 <!-- Main Admin-Panel Script -->
 <script>
 	$(function () {
+		$("#_required_template").hide()
 		$("#main-tabs").tabs()
 	})
 </script>

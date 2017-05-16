@@ -13,6 +13,16 @@
 			echo $this->ms_basepath;
 		}
 
+		public function get_host() {
+
+			return "http://".$_SERVER['HTTP_HOST'].$this->ms_basepath;
+
+		}
+
+		public function echo_host() {
+			echo $this->get_host();
+		}
+
 		public function add_admin($login, $password, $name) {
 
 			$password = $this->generate($password);

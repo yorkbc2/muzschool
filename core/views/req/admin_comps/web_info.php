@@ -86,3 +86,11 @@
     })
 
 </script>
+
+
+<style>
+    .__web_info input {
+        width: 100%;
+        
+    }
+</style>

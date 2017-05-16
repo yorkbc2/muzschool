@@ -132,6 +132,39 @@
 
 			});
 
+			$r->map("GET", "/edit/page/[i:id]", function ($id) {
+				global $ms;
+				
+				$postId = $id;
+				$pageItem = array();
+				$contentItem = "";
+
+				if($ms->admin_check()) {
+					$page = $ms->query("SELECT * FROM `pagelist` WHERE id='$id'");
+
+					$page = mysqli_fetch_array($page);
+
+					if(isset($page['name'])) {
+
+						$pageItem = $page;
+						$contentItem = $this->open_file(__DIR__."/views/user/".$pageItem['link'].".html");
+
+						
+
+
+					}
+					else {
+						$this->redirect('/');
+					}
+
+					require $this->req_view."edit.php";
+				}
+				else {
+					$this->redirect('/login');
+				}
+
+			});
+
 			$r->map("GET", "/logout", function () {
 
 				$_SESSION['user'] = array();
