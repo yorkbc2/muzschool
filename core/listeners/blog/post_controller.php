@@ -26,5 +26,11 @@
 		echo $res;
 
 	}
+	else if ($reg == "remove_post") {
+		$id = $_POST['id'];
+		$res = $blog->remove_post($id);
+
+		return $res;
+	}
 
  ?>

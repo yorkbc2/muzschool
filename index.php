@@ -34,6 +34,8 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vuejs-paginator/2.0.1/vuejs-paginator.min.js"></script>
+
 </head>
 <body>
 
@@ -62,6 +64,7 @@
 				<nav class="__nav" id="_nav">
 					<ul class="__ul">
 						<li><a href="<?php $ms->get_basepath() ?>/">Головна</a></li>
+						<li><a href="<?php $ms->get_basepath() ?>/blog">Наш блог</a></li>
 						<?php $ms_pages->echo_pages($ms_pages->get_pages(), $ms->ms_basepath); ?>
 						<?php if($ms->admin_check()) {
 							?>

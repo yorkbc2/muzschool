@@ -52,6 +52,39 @@
 
 		}
 
+		public function upload_file($files, $filekey) {
+
+			for($i = 0; $i < sizeof($files) ; $i++) {
+
+				$file = $files[$i];
+
+				$name = $file['name'];
+				$tmp = $file['tmp_name'];
+
+				$name = date("YmdHis").substr(microtime(FALSE), 2, 3).basename($name);
+				$filepath = __DIR__."/uploads/user/".$name;
+
+				if(move_upload_file($tmp, $filepath)) {
+
+					$query = "INSERT INTO `uploads` (id, name, path, filekey) VALUES (NULL, '$name', '$path', '$filekey')";
+
+					$result_ = $this->query($query);
+
+					if(!$result_) {
+						return false;
+					}
+
+					return true;
+
+				}
+				else {
+					return false;
+				}
+
+			}
+
+		}
+
 		public function login_in($login, $password) {
 
 			$list = $this->query("SELECT * FROM `adminlist`");

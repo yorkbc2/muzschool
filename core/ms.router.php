@@ -165,6 +165,17 @@
 
 			});
 
+			$r->map("GET", "/blog", function () {
+				global $ms;
+
+				require $this->req_view."blog/blog.php";
+
+			}, 'blog-name');
+
+			$r->map("GET", "/blog/post/[i:id]", function ($id) {
+
+			});
+
 			$r->map("GET", "/logout", function () {
 
 				$_SESSION['user'] = array();
