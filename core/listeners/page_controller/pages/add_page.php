@@ -4,15 +4,15 @@
 	$name = $_POST['name'];
 	$link = strtolower($_POST['link']);
 	$is_category = $_POST['isCategory'];
-	$category = strtolower($_POST['category']);
+	$category = $_POST['categoryName'];
 
 	$query = "";
 
-	if($is_category == "false" OR $is_category == false) {
-		$query = "INSERT INTO `pagelist` (id, name, link, category) VALUES (NULL, '$name', '$link', NULL)";
+	if($is_category == true OR $is_category == 'true' OR $is_category == TRUE) {
+		$query = "INSERT INTO `pagelist` (id, name, link, category) VALUES (NULL, '$name', '$link', '$category')";
 	}
 	else {
-		$query = "INSERT INTO `pagelist` (id, name, link, category) VALUES (NULL, '$name', '$link', '$category')";
+		$query = "INSERT INTO `pagelist` (id, name, link, category) VALUES (NULL, '$name', '$link', NULL)";
 	}
 
 
@@ -22,7 +22,7 @@
 
 	$result__ = $ms_pages->create_page($content, $link, $name);
 
-	echo json_encode($result_);
+	echo $is_category;
 
 
 

@@ -46,7 +46,22 @@
 <!-- Main Admin-Panel Script -->
 <script>
 	$(function () {
-		$(".froalaArea").froalaEditor()
+		let hs = "<?php $ms->echo_host() ?>"
+
+		let ckOptions = {
+			filebrowserBrowseUrl : hs + "/public/ckeditor/kcfinder/browse.php?opener=ckeditor&type=files",
+			filebrowserImageBrowseUrl: hs + "/public/ckeditor/kcfinder/browse.php?opener=ckeditor&type=images",
+			filebrowserFlashBrowseUrl: hs + "/public/ckeditor/kcfinder/browse.php?opener=ckeditor&type=flash",
+			filebrowserUploadUrl: hs + "/public/ckeditor/kcfinder/browse.php?opener=ckeditor&type=files",
+			filebrowserImageUploadUrl: hs + "/public/ckeditor/kcfinder/browse.php?opener=ckeditor&type=images",
+			filebrowserFlashUploadUrl: hs + "/public/ckeditor/kcfinder/browse.php?opener=ckeditor&type=flash"
+
+		}
+
+		CKEDITOR.replace("fullDescription", ckOptions)
+		CKEDITOR.replace("addNewPage", ckOptions)
+		CKEDITOR.replace("addNewPost", ckOptions)
+
 		$("#_required_template").hide()
 		$("#main-tabs").tabs()
 	})

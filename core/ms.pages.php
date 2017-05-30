@@ -177,7 +177,6 @@
 			if(!$result) {
 				return false;
 			}
-			else {
 
 				$dos_query = "DELETE FROM `routelist` WHERE url='$link'";
 
@@ -188,7 +187,7 @@
 				}
 				else {
 
-					$tre_query = $this->remove_file(__DIR__."/core/views/user/".$link.".html");
+					$tre_query = unlink(__DIR__."/views/user/".$link.".html");
 
 					if(!$tre_query) {
 						return false;
@@ -196,8 +195,6 @@
 					else {
 						return true;
 					}
-
-				}
 
 			}
 

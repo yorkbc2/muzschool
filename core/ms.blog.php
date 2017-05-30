@@ -107,6 +107,33 @@
 
 		}
 
+		public function get_popular($limit) {
+
+			$posts = $this->query_fetch("SELECT * FROM `postlist` ORDER BY views DESC LIMIT 0,5");
+
+			return $posts;
+
+		}
+
+		public function echo_popular($bp) {
+
+			$posts = $this->get_popular(5);
+
+			for($i = 0 ; $i < sizeof($posts) ; $i++) {
+
+				echo "<li><i class='fa fa-eye'></i> ".$posts[$i]['views']."<a href='".$bp."/blog/post/".$posts[$i]['id']."'>
+					".$posts[$i]['title']."
+				</a>
+				<section class='_li_content'>
+				<a href='".$bp."/blog/post/".$posts[$i]['id']."'>
+					".$posts[$i]['content']."
+				</a>
+				</section></li>";
+
+			}
+
+		}
+
 
 	}
 

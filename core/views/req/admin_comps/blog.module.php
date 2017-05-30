@@ -43,7 +43,7 @@
 							<small> Назва новини, яку будуть бачити користувачі.</small>
 						</div>
 						<div>
-							<textarea id="postContentArea" class="froalaArea"></textarea>
+							<textarea id="addNewPost" name="addNewPost"></textarea>
 						</div>
 						<div>
 							<select v-model="newPost.category">
@@ -91,7 +91,9 @@
 			</tr>
 			<tr v-else v-for="post in posts">
 				<td><a v-bind:href="basepath + 'post/' + post.id">{{post.title}}</a></td>
-				<td></td>
+				<td><button class='__delete' @click="removePost(post.id)">
+					&times;
+				</button></td>
 				<td>{{post.views}}</td>
 				<td>{{post.date}}</td>
 			</tr>
@@ -126,6 +128,25 @@
 		},
 
 		methods: {
+
+			removePost(id) {
+
+				let c = confirm("Ви дійсно бажаєте видалити новину?")
+
+				if(c) {
+
+				this.$http.post(this.page_controller + "post_controller.php",
+					{id: id,
+						req: "remove_post"},
+						this.opt)
+					.then(res => {
+						alert("Новина видалена")
+						this.getPosts()
+					}, error => console.error(error))
+
+				}
+
+			},
 
 			getPosts() {
 
@@ -172,7 +193,7 @@
 
 				MS.loading("Обробка інформації для створення новини")
 
-				let content = $("#postContentArea").val();
+				let content = CKEDITOR.instances['addNewPost'].getData();
 
 				let d = this.correctDate(new Date().getDate());
 				let m = this.correctDate(parseInt(new Date().getMonth()) + 1);

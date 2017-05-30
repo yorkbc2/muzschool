@@ -67,7 +67,7 @@
 	._blog_header {
 		text-align: center;
 		font-family: "Lobster", cursive;
-		color: firebrick;
+		color: #20713b;
 		padding: 20px 15px;
 		border-top: 3px dashed green;
 		border-bottom: 3px dashed green;
@@ -79,9 +79,18 @@
 		padding: 5px;
 		margin: 3px 0;
 
-		border-bottom: 3px solid firebrick;	
+		border-bottom: 3px solid #26da62;	
 
 		border-radius: 3px;
+	}
+
+	._post ._post_title a {
+		color: #3399b7;
+		font-family: "Times New Roman", sans-serif;
+		text-decoration: none;
+	}
+	._post ._post_title a:hover {
+		color: #23527c;
 	}
 
 </style>

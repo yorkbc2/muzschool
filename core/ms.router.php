@@ -13,6 +13,12 @@
 
 		public $basepath = "";
 
+		public $user_routes = array();
+
+		public function user_function ($pagename) {
+			print_r($pagename);
+		}
+
 		
 
 		function __construct($basepath = "") {
@@ -73,14 +79,10 @@
 		public function create() {
 
 			$routes = $this->get_routes();
-
-			for($i = 0 ; $i < sizeof($routes) ; $i++) {
-
-				$this->map($routes[$i]);
-
-			}
-
 			$this->create_req_maps();
+
+			$this->create_user_maps($routes);
+
 
 			$this->match();
 
@@ -174,6 +176,12 @@
 
 			$r->map("GET", "/blog/post/[i:id]", function ($id) {
 
+				global $ms;
+
+				$postId = $id;
+
+				require $this->req_view."blog/post.php";
+
 			});
 
 			$r->map("GET", "/logout", function () {
@@ -193,16 +201,24 @@
 
 		}
 
-		private function map($route) {
+		private function create_user_maps($routes) {
 
+			$r = $this->router;
 
-				$this->middle_route = $route;
+			$i = 0 ; 
 
-			$this->router->map("GET", "/".$route['url'], function () {
+			while($i < sizeof($routes)) {
 
-				require $this->user_view.$this->middle_route['page'].'.html';
+				$route = $routes[$i];
 
-			});
+				$r->map("GET", "/[a:subpage]", function ($subpage) {
+					
+					require $this->user_view.$subpage.".html";
+
+				}, $route['page']);
+
+				$i++;
+			}
 
 		}
 
@@ -216,7 +232,6 @@
 
 			}
 			else {
-
 				$this->redirect('/404');
 
 			}

@@ -1,18 +1,17 @@
-$main = #26da62
+$main = #8BC34A
 
-$main_hover = #2c9e52
+$main_hover = #4CAF50
 
 $w_grey = #e6e6e6
 
 $lobster = 'Lobster', cursive
 
-$bg = #fffbdd
+$bg = rgba(232,232,190,0.6)
 
 body
 	
 
 	margin 0
-	padding 0 10px
 	
 	background-image url("/muzschool/public/images/bg.jpg")
 	
@@ -20,14 +19,28 @@ body
 	
 	display block
 
-	background-color $w_grey
+.MainContainer
+
+	background-color $bg
+
 	
 section#main
 	
-	margin 0 5px
 	
 	background-color $bg
 	
+	padding 10px 0
+
+	padding-top 0px
+	
+._welcome_bg 
+	background-size cover
+	
+	width 100%
+	min-height 520px
+	
+	background-attachment fixed
+	background-position center
 
 .center-block
 	width 330px
@@ -161,16 +174,70 @@ section#main
 	span 
 		font-size 1.6em
 		line-height 15px
+		
+
+._header_image
+	
+	margin 20px
+	
+	width 300px
+	min-height 1px
+	position relative
+	display block
+	
+	border 15px solid #fff
+	
+	border-radius 20px
+	
+	img
+		width 270px
+		
+		height auto
+
+
+
 .__header
 
 	padding 40px 50px
 	margin 0 
 	display block
+			
+	.req_quote
+		
+		font-family "Comfortaa", cursive
+		
+		margin 10px auto
+	
+		width 420px
+		min-height 1px
+		padding 10px
+		background-color rgba(255,255,255,0.9)
+		
+		text-align left 
+		
+		font-size 22px
+		
+		._author
+			
+			display block
+			
+			text-align right
+			
+			font-size 18px
+			
+			img
+				width 48px
+				height auto
+				border-radius 50%
+				border 2px solid $main
 
 	h1
-		text-align right
+		text-align center
+		
+		color #fff
 		
 		font-family $lobster
+
 		
 		img
 			width 64px
@@ -181,9 +248,20 @@ section#main
 			&:hover
 				
 				animation keyBounce 1s linear forwards
+		
+	h2
+		font-size 16px
+		font-family $roboto 
+		
+		font-weight bolder
+		text-align center
+		color #fff
+		
+
 
 nav.__nav
 	width 100%
+	padding 6px 0
 
 	ul
 		margin 0
@@ -197,16 +275,27 @@ nav.__nav
 			list-style none
 
 			&:nth-child(odd)
-				margin 0 1px	
+				margin 0 1px
+			&:nth-child(even) 
+				margin 0 0	
 
 			padding 15px 10px
 			text-align center
 			transition all .5s ease-in-out
-			background-color $main
+
+			border-radius 3px
+
+			background -webkit-linear-gradient($main, $main_hover)
+			background -o-linear-gradient($main, $main_hover)
+			background -moz-linear-gradient($main, $main_hover)
+			background linear-gradient($main, $main_hover)
 
 			&:hover
 
-				background-color $main_hover
+				background -webkit-linear-gradient($main_hover, $main)
+			    background -o-linear-gradient($main_hover, $main)
+			    background -moz-linear-gradient($main_hover, $main)
+			    background linear-gradient($main_hover, $main)
 
 			a
 				color #fff
@@ -251,6 +340,29 @@ nav.__nav
 		left 0
 		bottom 0
 
+._footer 
+	
+	position relative
+	
+	width 100%
+	height 125px
+	background-position center
+	background-attachment fixed
+	background-size cover
+	
+	background-image url('../images/footer.jpg')
+	
+	._filter
+		
+		width 100%
+		height 100%
+		
+		background-color rgba(0,0,0,0.5)
+		
+		text-align center
+		
+		color #fff
+		font-size 18px
 
 @keyframes keyBounce 
 	
@@ -268,3 +380,4 @@ nav.__nav
 		
 	100%
 		transform rotate(0deg) scale(1.1)
+		

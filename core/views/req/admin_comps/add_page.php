@@ -53,7 +53,7 @@
 			</p>
 			<hr>
 			<button class="btn btn-primary" @click="openModal">Створити сторінку</button>
-			<div class="dx-modal" v-if="creatingPage">
+			<div class="dx-modal" v-show="creatingPage">
 				<button class="dx-close" @click="openModal">&times;</button>
 				<div class="dx-block">
 					<form class='dx-form' v-on:submit.prevent="createPage">
@@ -71,7 +71,7 @@
 							<small>Посилання по якому буде знаходитись сторінка (/about)</small>
 						</div>
 						<div>
-							<textarea id="page_x2j1" class="froalaArea"></textarea>
+							<textarea name="addNewPage" id="addNewPage"></textarea>
 						</div>
 						<div>
 							<label for="isCategoryFalse">Без категорії</label>
@@ -182,11 +182,11 @@
 							res => {
 							console.log(res)
 								if(res.body == true || res.body == 'true' || res.body == '1') {
-									MS.notice("Сторінку успішно видаленно.", "виконано", 'succ')
-									console.log(e);
+									alert("Сторінку видалено!")
+									this.getPages();
 								}
 								else {
-									MS.notice("Щось пішло не так.", "помилка", 'error')
+									alert("Помилка у видаленні сторінки " + link)
 								}
 							},
 							err => console.error(err)
@@ -213,8 +213,17 @@
 
 				MS.loading("Сторінка створюється. Зачекайте хвилинку.")
 
-				this.$http.post(this.page_controller+"pages/add_page.php", this.page, this.options)
+				this.$http.post(this.page_controller+"pages/add_page.php", 
+					{
+						name : this.page.name,
+						link:  this.page.link,
+						content : CKEDITOR.instances.addNewPage.getData(),
+						isCategory: this.page.isCategory,
+						categoryName: this.page.category
+					}
+					,this.options)
 					.then(res => {
+						console.log(this.page.isCategory)
 						MS.removeLoading("Заклик успішно виконано!");
 						console.log(res)
 					}, err => console.error(err))
@@ -261,6 +270,8 @@
 		},
 
 		mounted() {
+
+			this.changeIsCategory()
 
 			this.$http.get(this.page_controller + "categories/get_all.php")
 				.then(res => {

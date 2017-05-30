@@ -9,28 +9,28 @@
         <legend>
             Інформація про сайт
         </legend>
-        <div>
-            <input type="text" v-model="websiteInfo.title" @input="createButton('title')">
+        <div class='form-group'>
+            <input class='form-control' type="text" v-model="websiteInfo.title" @input="createButton('title')">
             <button class='btn btn-success' v-if="hiddenButtons.title" @click="saveConfiguration('title')">Зберегти</button>
         </div>
-        <div>
-            <textarea v-model="websiteInfo.description" @input="createButton('desc')"></textarea>
+        <div class='form-group'>
+            <textarea class='form-control' v-model="websiteInfo.description" @input="createButton('desc')"></textarea>
             <button class='btn btn-success' v-if="hiddenButtons.desc" @click="saveConfiguration('description')">Зберегти</button>
         </div>
-        <div>
-            <input type="text" v-model="websiteInfo.keywords" @input="createButton('keys')">
+        <div class='form-group'>
+            <input class='form-control' type="text" v-model="websiteInfo.keywords" @input="createButton('keys')">
             <button class='btn btn-success' v-if="hiddenButtons.keys" @click="saveConfiguration('keywords')">Зберегти</button>
         </div>
-        <div>
-            <input type="text" v-model="contentInfo.quotes" @input="createButton('quotes')">
+        <div class='form-group'>
+            <input class='form-control' type="text" v-model="contentInfo.quotes" @input="createButton('quotes')">
             <button class='btn btn-success' v-if="hiddenButtons.quotes" 
             @click="saveQuotes()">
                 Зберегти
             </button>
         </div>
-        <div>
+        <div class='form-group'>
             
-            <textarea id="froalaAreaDescription" class="froalaArea" v-model="contentInfo.fullDescription"
+            <textarea name="fullDescription" v-model="contentInfo.fullDescription"
             @input="createButton('fullDesc')"></textarea>
 
             <button class='btn btn-success'
@@ -110,7 +110,7 @@
 
                this.$http.post(`${this.bpt}core/listeners/web_info/web_change.php`, {
                     req: "change_content_fulldesc",
-                    fullDescription: $("#froalaAreaDescription").val()
+                    fullDescription: CKEDITOR.instances.fullDescription.getData()
                }, {
                 emulateJSON: true
                }).then(res => {
